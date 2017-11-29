@@ -1,9 +1,9 @@
 # Title: Plan for your portfolios
 
 ## Team Member(s):
-Haoyuan Song
-Jiajun Chen
-Yuyao Wang
+- Haoyuan Song
+- Jiajun Chen
+- Yuyao Wang
 
 
 # Monte Carlo Simulation Scenario & Purpose:
