@@ -26,14 +26,19 @@ A financial model called utility function used by investor is applied to this sy
 1. end date:
 1. trading frequency(days):
 
-- Hypothesis:
+- Hypothesis:  
+
 1. The larger the frequency, the wider the scope of the return.
 1. Different excepted volatility results a particular weight ratio of portfolio, which is most suitable for investors.
 
 
 ### Simulation's variables of uncertainty
-1. various weight of portfolio: The total weight of the portfolio is 100%.The weight is split by stocks randomly. It is good representation as any proportion of specific stock in portfolio is possible.
-1. Trading frequency: Trading frequency can be range (3,30).The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
+- various weight of portfolio:  
+
+  The total weight of the portfolio is 100%.The weight is split by stocks randomly. It is good representation as any proportion of specific stock in portfolio is possible.
+- Trading frequency:  
+
+  Trading frequency can be range (3,30).The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
 
 
 ## Instructions on how to use the program:
