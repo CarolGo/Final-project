@@ -14,13 +14,10 @@ A financial model called utility function used by investor is applied to this sy
 
 ### Hypothesis before running the simulation:
 - We use the following configuration for simulation:
-1. Three particular stocks:(stock code)
-
-2. start date:
-
-3. end date:
-
-4. trading frequency(days):
+<br/>1. Three particular stocks:(stock code)</br>
+<br/>2. start date:</br>
+<br/>3. end date:</br>
+<br/>4. trading frequency(days):</br>
 
 
 - Hypothesis:
