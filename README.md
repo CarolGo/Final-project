@@ -7,17 +7,21 @@
 
 
 # Monte Carlo Simulation Scenario & Purpose:
-As robo-advisor, A Django based web system is designed to return a suitable stocks portfolio for people who are novice of finance.
+Like a robo-advisor, our system is designed to return a suitable stocks portfolio for people who are novice of finance.
 This system takes in multiple data including stocks data(provided by yahoo finance),stocks code, time period(start date
 and end date),trading frequency and excepted volatility. According those data, this system will return a portfolio with specific weight of stocks and trading frequency.
 A financial model called utility function used by investor is applied to this system to how the system decide that.
 
 ### Hypothesis before running the simulation:
 - We use the following configuration for simulation:
-1.Three particular stocks:(stock code)
-2.start date:
-3.end date:
-4.trading frequency(days):
+1. Three particular stocks:(stock code)
+
+2. start date:
+
+3. end date:
+
+4. trading frequency(days):
+
 
 - Hypothesis:
 1. The larger the frequency, the wider the scope of the return.
