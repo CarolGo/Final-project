@@ -5,7 +5,7 @@
 - Haoyuan Song
 - Jiajun Chen
 - Yuyao Wang  
-##### GitHub Link: https://github.com/CarolGo/Final-project.git
+#### GitHub Link: https://github.com/CarolGo/Final-project.git
 
 
 # Monte Carlo Simulation Scenario & Purpose:
