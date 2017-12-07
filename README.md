@@ -18,12 +18,12 @@ within the risks you can bear to maximum your income.
 
 ### Hypothesis before running the simulation:
 Image that we have know the risk preference of users. Based on their preference, we take multiple data including stocks data(provided by yahoo finance),stocks code, time period(start date
-and end date)and trading frequency into account. According those data, this system will return a portfolio with specific weight of stocks and trading frequency.
+and end date)and trading frequency into account. According to those data, this program will return a portfolio with specific weight of stocks and trading frequency.
 Financial models called investor's utility function and modern portfolio theory are applied to this system to help the system decide that.
 - We use the following configuration for simulation:
-1. A given set of particular stocks:(stock code)
-1. historical prices form YHOO stock
-1. trading frequency(days):
+1. A given set of particular stocks.
+1. historical prices from YAHOO FINANCE!
+1. trading frequency(days).
 
 - Hypothesis:  
 
@@ -39,11 +39,11 @@ Financial models called investor's utility function and modern portfolio theory 
 - Trading frequency:  
 
 
-  Trading frequency can be range (3,30).The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
+  Trading frequency is set to range from 3 days to 30 days.The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
 
 
 ## Instructions on how to use the program:
-User is required to fill in a questionnaire to evaluate his(her) risk preference and his three stocks. According to these information, the system will calculate the history price data and provide the portfolio with most suitable weight and trading frequency.
+User is required to fill in a questionnaire to evaluate his risk preference and his three stocks. According to those information, the program will require the price data of stocks and compare different results from Monte Carlo variables, finally return the portfolio with most suitable weight and trading frequency to the user. User can take this result as suggestion or resort the portfolio directly.
 
 
 ## Sources Used:
