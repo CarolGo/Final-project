@@ -1,4 +1,4 @@
-# Title: Personal Tailor Portfolio
+# Personal Tailor Portfolio
 
 
 ## Team Members:
@@ -28,9 +28,9 @@ Financial models called investor's utility function and modern portfolio theory 
 - Hypothesis:  
 
 1. We use the investor’s utility function to evaluate the portfolios. The formula is from WF. sharp(1999)
-1. When there are two portfolios with same expected profits, investors will choose the portfolio with less excepted risk.
 1. The formula used in calculating excepted risk is from modern portfolio theory(Markowitz, 1952)
-
+1. When there are two portfolios with same expected profits, investors will choose the portfolio with less excepted risk.
+1. If the user prefers low risk, a portfolio with long trading frequency will be returned.
 
 ### Simulation's variables of uncertainty
 - various weight of portfolio:  
@@ -38,12 +38,12 @@ Financial models called investor's utility function and modern portfolio theory 
   The total weight of the portfolio is 100%.The weight is split by stocks randomly. It is good representation as any proportion of specific stock in portfolio is possible.
 - Trading frequency:  
 
+
   Trading frequency can be range (3,30).The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
 
 
 ## Instructions on how to use the program:
-User is required to fill in a questionnaire to evaluate his(her) risk preference. According this, the system will calculate
-the history price data and provide the most suitable weight and trading frequency.
+User is required to fill in a questionnaire to evaluate his(her) risk preference and his three stocks. According to these information, the system will calculate the history price data and provide the portfolio with most suitable weight and trading frequency.
 
 
 ## Sources Used:
