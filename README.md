@@ -18,18 +18,18 @@ within the risks you can bear to maximum your income.
 
 ### Hypothesis before running the simulation:
 Image that we have know the risk preference of users. Based on their preference, we take multiple data including stocks data(provided by yahoo finance),stocks code, time period(start date
-and end date),trading frequency and excepted volatility into account. According those data, this system will return a portfolio with specific weight of stocks and trading frequency.
-A financial model called utility function used by investor is applied to this system to help the system decide that.
+and end date)and trading frequency into account. According those data, this system will return a portfolio with specific weight of stocks and trading frequency.
+Financial models called investor's utility function and modern portfolio theory are applied to this system to help the system decide that.
 - We use the following configuration for simulation:
-1. Three particular stocks:(stock code)
-1. start date:
-1. end date:
+1. A given set of particular stocks:(stock code)
+1. historical prices form YHOO stock
 1. trading frequency(days):
 
 - Hypothesis:  
 
-1. The larger the frequency, the wider the scope of the return.
-1. Different excepted volatility results a particular weight ratio of portfolio, which is most suitable for investors.
+1. We use the investor’s utility function to evaluate the portfolios. The formula is from WF. sharp(1999)
+1. When there are two portfolios with same expected profits, investors will choose the portfolio with less excepted risk.
+1. The formula used in calculating excepted risk is from modern portfolio theory(Markowitz, 1952)
 
 
 ### Simulation's variables of uncertainty
@@ -42,12 +42,11 @@ A financial model called utility function used by investor is applied to this sy
 
 
 ## Instructions on how to use the program:
-User is required to type in their excepted volatility. According this volatility, the system will calculate the portfolio
-with most suitable weight and trading frequency.
+User is required to fill in a questionnaire to evaluate his(her) risk preference. According this, the system will calculate
+the history price data and provide the most suitable weight and trading frequency.
 
 
 ## Sources Used:
-1. 
-1. 
-1. 
+1. Markowitz. Portfolio Selection, The journal of finance[J], 1952, 1540-6261
+1. Sharpe, W. F., Alexander, G. J., & Bailey, J. V. (1999). Investments (Vol. 6). Upper Saddle River, NJ: Prentice-Hall.
 
