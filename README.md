@@ -43,7 +43,7 @@ Financial models called investor's utility function and modern portfolio theory 
 
 
 ## Instructions on how to use the program:
-User is required to fill in a questionnaire to evaluate his risk preference and his three stocks. According to those information, the program will require the price data of stocks and compare different results from Monte Carlo variables, finally return the portfolio with most suitable weight and trading frequency to the user. User can take this result as suggestion or resort the portfolio directly.
+User is required to fill in a questionnaire to evaluate his risk preference and his choices  of stocks. According to those information, the program will require the price data of stocks and compare different results from Monte Carlo variables, finally return the portfolio with most suitable weight and trading frequency to the user. User can take this result as suggestion or resort the portfolio directly.
 
 
 ## Sources Used:
