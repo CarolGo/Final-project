@@ -1,41 +1,52 @@
-# Title: Plan for your portfolios
+# Personal Tailor Portfolio
 
-## Team Member(s):
-Haoyuan Song,
-Jiajun Chen,
-Yuyao Wang.
+
+## Team Members:
+- Haoyuan Song
+- Jiajun Chen
+- Yuyao Wang  
+#### GitHub Link: https://github.com/CarolGo/Final-project.git
 
 
 # Monte Carlo Simulation Scenario & Purpose:
-As robo-advisor, A Django based web system is designed to return a suitable stocks portfolio for people who are novice of finance. //what information needed
-This system takes in multiple data including stocks data(provided by yahoo finance),stocks code, time period(start date
-and end date),trading frequency and excepted volatility. According those data, this system will return a portfolio with specific weight of stocks and trading frequency.
-A financial model is applied to this system,(PlEASE EXPLAIN)
-// output what valuable results//how the system decide that.
+It is difficult for someone who wants to invest his/her property reasonably without professional financial background.  
+It is also unwise for them to take risks pursuing high profits regardless of high risks. Nowadays, robo-advisor helps people solve that problem. Based on this background, our systems will provide you your personal 
+tailor investment method on stocks, which help you asset your allocations more precisely and make your investment decisions 
+more rationally using Monte Carlo Simulation. Finally, You can get your specific stock portfolios trading frequency 
+within the risks you can bear to maximum your income.
+
 
 ### Hypothesis before running the simulation:
-We use the following configuration for simulation:
-Three particular stocks:(stock code)
-start date:
-end date:
-trading frequency(days):
+Image that we have know the risk preference of users. Based on their preference, we take multiple data including stocks data(provided by yahoo finance),stocks code, time period(start date
+and end date)and trading frequency into account. According to those data, this program will return a portfolio with specific weight of stocks and trading frequency.
+Financial models called investor's utility function and modern portfolio theory are applied to this system to help the system decide that.
+- We use the following configuration for simulation:
+1. A given set of particular stocks.
+1. historical prices from YAHOO FINANCE!
+1. trading frequency(days).
 
-Hypothesis:
-1. The larger the frequency, the wider the scope of the return.
-2. Different excepted volatility results a particular weight ratio of portfolio, which is most suitable for investors.
+- Hypothesis:  
 
+1. We use the investor’s utility function to evaluate the portfolios. The formula is from WF. sharp(1999)
+1. The formula used in calculating excepted risk is from modern portfolio theory(Markowitz, 1952)
+1. When there are two portfolios with same expected profits, investors will choose the portfolio with less excepted risk.
+1. If the user prefers low risk, a portfolio with long trading frequency will be returned.
 
 ### Simulation's variables of uncertainty
-List and describe your simulation's variables of uncertainty (where you're using pseudo-random number generation). 
-For each such variable, how did you decide the range and which probability distribution to use?  
-Do you think it's a good representation of reality?
-various weight of portfolio: The total weight of the portfolio is 100%.The weight is split by th stocks randomly.
-It is good representation as any proportion of specific stock in portfolio is possible.
-Trading frequency: Trading frequency can be range (3,30).The frequency can only be integers. All the numbers from 3
-to 30 are in same possibility.
+- various weight of portfolio:  
+
+  The total weight of the portfolio is 100%.The weight is split by stocks randomly. It is good representation as any proportion of specific stock in portfolio is possible.
+- Trading frequency:  
+
+
+  Trading frequency is set to range from 3 days to 30 days.The frequency can only be integers. All the numbers from 3 to 30 are in same possibility.
+
+
 ## Instructions on how to use the program:
-User is required to type in their excepted volatility. According this volatility, the system will calculate the portfolio
-with most suitable weight and trading frequency.
+User is required to fill in a questionnaire to evaluate his risk preference and his choices  of stocks. According to those information, the program will require the price data of stocks and compare different results from Monte Carlo variables, finally return the portfolio with most suitable weight and trading frequency to the user. User can take this result as suggestion or resort the portfolio directly.
+
 
 ## Sources Used:
+1. Markowitz. Portfolio Selection, The journal of finance[J], 1952, 1540-6261
+1. Sharpe, W. F., Alexander, G. J., & Bailey, J. V. (1999). Investments (Vol. 6). Upper Saddle River, NJ: Prentice-Hall.
 
