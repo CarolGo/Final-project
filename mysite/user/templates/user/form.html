@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/ico" href="{% static 'assets/images/timg.jpg' %}" />
+    <!-- Bootstrap -->
+    <link href="{% static 'assets/css/vendor/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/css/font-awesome.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/animate/animate.css' %}">
+    <link type="text/css" rel="stylesheet" media="all" href="{% static 'assets/js/vendor/mmenu/css/jquery.mmenu.all.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/js/vendor/videobackground/css/jquery.videobackground.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap-checkbox.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/js/vendor/no-ui-slider/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/js/vendor/chosen/css/chosen.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/js/vendor/chosen/css/chosen-bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/js/vendor/tabdrop/css/tabdrop.css' %}">
+
+    <link href="{% static 'assets/css/minimal.css' %}" rel="stylesheet">
+
+  </head>
+  <body class="bg-1">
+
+    <!-- Preloader -->
+    <div class="mask"><div id="loader"></div></div>
+    <!--/Preloader -->
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Make page fluid -->
+      <div class="row">
+
+        <!-- Page content -->
+        <div id="content" class="col-md-12">
+
+          <!-- content main container -->
+          <div class="main">
+
+            <!-- row -->
+            <div class="row">
+
+              <!-- col 12 -->
+              <div class="col-md-12">
+
+                <!-- tile -->
+                <section id="rootwizard" class="tabbable transparent tile">
+
+
+
+                  <!-- tile header -->
+                  <div class="tile-header transparent">
+                    <h1><strong>投资者测评</strong> </h1>
+                    <div class="controls">
+                      <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                    </div>
+                  </div>
+                  <!-- /tile header -->
+
+                  <!-- tile widget -->
+                  <div class="tile-widget nopadding color transparent-black rounded-top-corners">
+                    <ul>
+                      <li><a href="#tab1" data-toggle="tab">投资者风险承受能力评估</a></li>
+                      <li><a href="#tab2" data-toggle="tab">投资者流动性要求评估</a></li>
+                      <li><a href="#tab3" data-toggle="tab">投资者个人信息评估</a></li>
+                    </ul>
+                  </div>
+                  <!-- /tile widget -->
+
+                  <!-- tile body -->
+                  <div class="tile-body">
+
+                    <div id="bar" class="progress progress-striped active">
+                      <div class="progress-bar progress-bar-cyan animate-progress-bar"></div>
+                    </div>
+
+                    <div class="tab-content">
+
+                      <div class="tab-pane" id="tab1">
+                        <form class="form-horizontal form1" role="form" parsley-validate id = "question1" method="post">
+                        {% csrf_token %}
+                          <div class="form-group">
+                          {% for question in question_list %}
+                            <label class="col-sm-4 control-label"><a>{{ question.question_text }}</a></label>
+                            <div class="col-sm-8" id="myproperlabel{{ forloop.counter }}">
+                              <div class="radio radio-transparent">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}a" value="{{ question.num_a }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}a"><a>{{ question.choice_a }}</a></label>
+                              </div>
+                              <div class="radio radio-transparent">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}b" value="{{ question.num_b }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}b"><a>{{ question.choice_b }}</a></label>
+                              </div>
+                            {% if question.choice_d != '0' %}
+                              <div class="radio radio-transparent">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}c" value="{{ question.num_c }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}c"><a>{{ question.choice_c }}</a></label>
+                              </div>
+                              {% if question.choice_e != '0' %}
+                              <div class="radio radio-transparent">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}d" value="{{ question.num_d }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}d"><a>{{ question.choice_d }}</a></label>
+                              </div>
+                              <div class="radio radio-transparent last">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}e" value="{{ question.num_e }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}e"><a>{{ question.choice_e }}</a></label>
+                              </div>
+                              {% else %}
+                              <div class="radio radio-transparent last">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}d" value="{{ question.num_d }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}d"><a>{{ question.choice_d }}</a></label>
+                              </div>
+                              {% endif %}
+                            {% else %}
+                              <div class="radio radio-transparent last">
+                                <input style="margin-top:0px;" type="radio" name="question{{ forloop.counter }}" id="{{ forloop.counter }}c" value="{{ question.num_c }}"  parsley-group="mygroup{{ forloop.counter }}" parsley-trigger="change" parsley-required="true" parsley-error-container="#myproperlabel{{ forloop.counter }} .last">
+                                <label for="{{ forloop.counter }}c"><a>{{ question.choice_c }}</a></label>
+                              </div>
+                            {% endif %}
+                              </div>
+                          {% endfor %}
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="tab-pane" id="tab2">
+
+                        <form class="form-horizontal form2" role="form" parsley-validate id="contact">
+
+                          <div class="form-group">
+                              <div class="col-sm-10">
+                                <h5><strong>请输入您当前的资产配比</strong></h5>
+                                <div  id="rangeSlider"></div>
+                              </div>
+                              <div class="col-sm-8">
+                                <h5>即存即取资产:<strong id="range-diff-1" class="zhi"></strong>%</h5>
+                                <h5>七个交易日内可以变现资产:<strong id="range-diff-2" class="zhi"></strong>%</h5>
+                                <h5>一年以内可以回款资产:<strong id="range-diff-3" class="zhi"></strong>%</h5>
+                                <h5>一年以上可以回款资产:<strong id="range-diff-4" class="zhi"></strong>%</h5>
+                                <h5>余额:<strong id="range-diff" class="zhi"></strong>%</h5>
+                              </div>
+                          </div>
+                        </form>
+
+                      </div>
+
+                      <div class="tab-pane" id="tab3">
+
+                        <form class="form-horizontal form3" role="form" parsley-validate id="eula">
+
+
+
+                          <div class="form-group">
+                            <label for="age" class="col-sm-2 control-label">您的年龄？</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control zhi" id="age" parsley-trigger="change" parsley-required="true" parsley-type="number" parsley-min="10" parsley-max="100" parsley-validation-minlength="0" placeholder="年龄">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="sex" class="col-sm-2 control-label">您的性别？</label>
+                            <div class="col-sm-10" id="selectbox1">
+                              <select class="chosen-select chosen-transparent form-control" id="sex" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="health" class="col-sm-2 control-label">您的总体身体状态是否健康？</label>
+                            <div class="col-sm-10" id="selectbox2">
+                              <select class="chosen-select chosen-transparent form-control" id="health" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="2">否</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="unhealth" class="col-sm-2 control-label">每年医药花费是否低于总收入15%？</label>
+                            <div class="col-sm-10" id="selectbox3">
+                              <select class="chosen-select chosen-transparent form-control" id="unhealth" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="2">否</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="gra" class="col-sm-2 control-label">您的最高学历是？</label>
+                            <div class="col-sm-10" id="selectbox4">
+                              <select class="chosen-select chosen-transparent form-control" id="gra" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">中小学</option>
+                                <option value="2">本科</option>
+                                <option value="3">硕士及以上</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="fin" class="col-sm-2 control-label">您是否有金融专业的相关学历？</label>
+                            <div class="col-sm-10" id="selectbox5">
+                              <select class="chosen-select chosen-transparent form-control" id="fin" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="married" class="col-sm-2 control-label">您是否已婚？</label>
+                            <div class="col-sm-10" id="selectbox6">
+                              <select class="chosen-select chosen-transparent form-control" id="married" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="2">否</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="finwea" class="col-sm-2 control-label">您的家庭金融总资产？</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control zhi" id="finwea" parsley-trigger="change" parsley-required="true" parsley-type="number" parsley-min="0"  parsley-validation-minlength="0" placeholder="金融总资产">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="house" class="col-sm-2 control-label">您的家庭不动产总资产？</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control zhi" id="house" parsley-trigger="change" parsley-required="true" parsley-type="number" parsley-min="0"  parsley-validation-minlength="0" placeholder="不动产总资产">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="human" class="col-sm-2 control-label">您的家庭年均工资收入是？</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control zhi" id="human" parsley-trigger="change" parsley-required="true" parsley-type="number" parsley-min="0"  parsley-validation-minlength="0" placeholder="年均工资收入">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="per" class="col-sm-2 control-label">您目前投资占家庭总资产百分比是？</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control zhi" id="per" parsley-trigger="change" parsley-required="true" parsley-type="number" parsley-min="10" parsley-max="100"  parsley-validation-minlength="0" placeholder="资产百分比">
+                            </div>
+                          </div>
+
+                        </form>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <!-- /tile body -->
+
+                  <!-- tile footer -->
+                  <div class="tile-footer border-top color white rounded-bottom-corners nopadding">
+                    <ul class="pager pager-full wizard">
+                      <li class="previous"><a href="javascript:;"><i class="fa fa-arrow-left fa-lg"></i></a></li>
+                      <li class="next"><a href="javascript:;"><i class="fa fa-arrow-right fa-lg"></i></a></li>
+                      <li class="next finish" style="display:none;"><a href="javascript:;"><i class="fa fa-check fa-lg"></i></a></li>
+                    </ul>
+                  </div>
+                  <!-- /tile footer -->
+
+
+
+
+                </section>
+                <!-- /tile -->
+
+              </div>
+              <!-- /col 12 -->
+
+            </div>
+            <!-- /row -->
+
+          </div>
+          <!-- /content container -->
+
+        </div>
+        <!-- Page content end -->
+
+      </div>
+      <!-- Make page fluid-->
+
+    </div>
+    <!-- Wrap all page content end -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'assets/js/vendor/bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/mmenu/js/jquery.mmenu.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/nicescroll/jquery.nicescroll.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/animate-numbers/jquery.animateNumbers.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/videobackground/jquery.videobackground.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/vendor/blockui/jquery.blockUI.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/no-ui-slider/nouislider.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/tabdrop/bootstrap-tabdrop.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/chosen/chosen.jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/parsley/parsley.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/wizard/jquery.bootstrap.wizard.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/minimal.min.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+        });
+    </script>
+    <script>
+      function loadzhi(){
+                var question_list = $('[class="tab-pane active"]').find('[class="zhi"]');
+                var arr = new Array();
+                for(var i=0;i<question_list.length;i++){
+                  arr[i] = question_list[i].innerHTML;
+                  console.log(arr[i]);
+                }
+                arr.push(2);
+                $.ajax({
+                    type:"POST",
+                    data: {arr:arr},
+                    traditional:true,
+                    url: "{% url 'user:test' %}", //后台处理函数的url
+                    cache: false,
+                    dataType: "json",
+                    success: function(result, statues, xml){
+                        alert(result.status);
+                    },
+                    error: function(){
+                        alert("false");
+                    }
+                });
+                return false;
+            }
+
+      function loadse(){
+                var question_list = $('[class="tab-pane active"]').find('[class="form-control zhi parsley-validated parsley-success"]');
+                var select_list = $('[class="tab-pane active"]').find('[class="chosen-select chosen-transparent form-control parsley-validated parsley-success"]');
+                var arr = new Array();
+                for(var i=0;i<question_list.length;i++){
+                  arr[i] = question_list[i].value;
+                  console.log(arr[i]);
+                }
+                for(var i=0;i<select_list.length;i++){
+                  arr.push(select_list[i].value);
+                  console.log(select_list[i].value);
+                }
+                arr.push(3);
+                $.ajax({
+                    type:"POST",
+                    data: {arr:arr},
+                    traditional:true,
+                    url: "{% url 'user:test' %}", //后台处理函数的url
+                    cache: false,
+                    dataType: "json",
+                    success: function(result, statues, xml){
+                        alert(result.status);
+                        window.location.href="{% url 'user:buy' %}";
+                    },
+                    error: function(){
+                        alert("false");
+                    }
+                });
+                return false;
+
+            }
+
+      function loadXMLDoc(){
+                var question_list = $('[class="tab-pane active"]').find('[class="parsley-validated parsley-success"]:checked');
+                var arr = new Array();
+                for(var i=0;i<question_list.length;i++){
+                  arr[i] = question_list[i].value;
+                  console.log(arr[i]);
+                }
+                arr.push(1);
+                $.ajax({
+                    type:"POST",
+                    data: {arr:arr},
+                    traditional:true,
+                    url: "{% url 'user:test' %}", //后台处理函数的url
+                    cache: false,
+                    dataType: "json",
+                    success: function(result, statues, xml){
+                        alert(result.status);
+                    },
+                    error: function(){
+                        alert("false");
+                    }
+                });
+                return false;
+            }
+
+    </script>
+    <script>
+    $(function(){
+
+      //initialize form wizard
+      $('#rootwizard').bootstrapWizard({
+
+        'tabClass': 'nav nav-tabs tabdrop',
+        onTabShow: function(tab, navigation, index) {
+          var $total = navigation.find('li').not('.tabdrop').length;
+          var $current = index+1;
+          var $percent = ($current/$total) * 100;
+          $('#rootwizard').find('#bar .progress-bar').css({width:$percent+'%'});
+
+          // If it's the last tab then hide the last button and show the finish instead
+          if($current >= $total) {
+            $('#rootwizard').find('.pager .next').hide();
+            $('#rootwizard').find('.pager .finish').show();
+            $('#rootwizard').find('.pager .finish').removeClass('disabled');
+          } else {
+            $('#rootwizard').find('.pager .next').show();
+            $('#rootwizard').find('.pager .finish').hide();
+          }
+          if($current == 2) {
+            var range = document.getElementById('rangeSlider');
+            range.style.height = '40px';
+            range.style.margin = '0 auto 30px';
+            noUiSlider.create(range, {
+                start: [ 0, 25, 50, 70 ], // 4 handles, starting at...
+                direction: 'rtl', // Put '0' at the bottom of the slider
+                behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+                tooltips: true,
+                orientation: 'horizontal',
+                step: 1,
+                connect: [true, true, true, true, false],
+                range: {
+                    'min': 0,
+                    'max': 100
+                },
+                pips: { // Show a scale with the slider
+                    mode: 'range',
+                    density: 20
+                }
+            });
+            var diffDivs = [
+	          document.getElementById('range-diff-1'),
+              document.getElementById('range-diff-2'),
+              document.getElementById('range-diff-3'),
+              document.getElementById('range-diff-4')
+            ];
+            var diff = document.getElementById('range-diff');
+            range.noUiSlider.on('update', function( values, handle ) {
+               diffDivs[0].innerHTML = values[0] - 0;
+               diffDivs[1].innerHTML = values[1] - values[0];
+               diffDivs[2].innerHTML = values[2] - values[1];
+               diffDivs[3].innerHTML = values[3] - values[2];
+               diff.innerHTML = 100 - values[3]
+            });
+          }
+        },
+
+        onNext: function(tab, navigation, index) {
+
+          var form = $('.form' + index)
+
+          form.parsley('validate');
+          var $current = index;
+          if(form.parsley('isValid')) {
+            tab.addClass('success');
+            console.log($current);
+            if($current == 1) {
+              loadXMLDoc();
+            } else if($current == 2) {
+              loadzhi();
+            } else {
+              loadse();
+            }
+          } else {
+            return false;
+          }
+
+        },
+
+        onTabClick: function(tab, navigation, index) {
+
+          var form = $('.form' + (index+1))
+
+          form.parsley('validate');
+
+          if(form.parsley('isValid')) {
+            tab.addClass('success');  
+          } else {
+            return false;
+          }
+
+        }
+
+      });
+
+      // Initialize tabDrop
+      $('.tabdrop').tabdrop({text: '<i class="fa fa-th-list"></i>'});
+    })
+      
+    </script>
+  </body>
+</html>
+      
