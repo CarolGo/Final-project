@@ -1,17 +1,22 @@
-import tushare as ts # tushare, a free api to get chinese stock data
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
+import time
+import pandas_datareader.data as web # API to get stocks data from yahoo.
+from dateutil.relativedelta import relativedelta
 from multiprocessing import Pool
+from pandas_datareader._utils import RemoteDataError
 
 
 class Portfolio():
     """
-    Demo for presentation.
+    This class realizes the main function of our program.
+    Thi class uses the Monte Carlo Simulation to find the best weights of portfolio.
     """
-    stock_set = ['600050','000725','600519']
-    start_date = '2016-01-01'
-    end_date = '2017-05-20'
+    stock_set = ['IBM','AAPL','GOOGL']
+    end_date = datetime.datetime.today().replace(hour=0, minute=0,second=0,microsecond=0)
+    start_date = end_date - relativedelta(years=2)
     returns = False
     index_a = 5.5
     processes = 4
@@ -19,34 +24,47 @@ class Portfolio():
     def __init__(self, stock_list=[]):
         """
         :param stock_list: stock id list, you can add or replace some of them.
-        # stock_set = ['601212', '601212', '600050', '000725', '600519']
         """
         self.stock_set = stock_list
 
     def set_basic(self, start_date: str, end_date: str, index_a: float, processes:int):
         """
-        :param start_date: '2016-01-01'
-        :param end_date: '2017-05-20'
+        :param start_date: The start date of stock data.(Format: '2016-01-01')
+        :param end_date: The end date of stock data.(Format:'2017-05-20')
         :param index_a: Risk Aversion Coefficient, different from users,range from 0~14,you can change it and test.
+        :param processes: Amount of processes.
         :return: a matrix contain daily earnings of the stocks
         """
-        self.start_date = start_date
-        self.end_date = end_date
+        self.start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d').replace(hour=0, minute=0,second=0,microsecond=0)
+        self.end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').replace(hour=0, minute=0,second=0,microsecond=0)
         self.index_a = index_a
         self.processes = processes
 
     @staticmethod
     def request(arr:list):
         """
-        get a stock's data
-        :param arr:
-        :return:
+        get a stock's data from yahoo.
+        :param arr: Array that stores the information of stocks we acquire..
+        :return: return the daily earnings of stocks.
         """
-        arr = ts.get_k_data(arr[1], start=arr[0].start_date,
-                            end=arr[0].end_date)  # tushare, a free api to get chinese stock data
-        arr.set_index('date', inplace=True)
-        re = np.log(arr['close'] / arr['close'].shift(1))  # get daily earnings
-        return re
+
+        re = None
+        num = 0
+        while re == None:
+            try:
+                arr = web.DataReader(arr[1], 'yahoo', start=arr[0].start_date, end=arr[0].end_date)
+            except RemoteDataError:
+                # It automatically
+                print('Data request failed, trying again..')
+                time.sleep(20)
+                num += 1
+                if num == 5:
+                    print('The request failed for 5 times, Please check your input.')
+                    break
+            else:
+                re = np.log(arr['Close'] / arr['Close'].shift(1))  # get daily earnings
+                return re
+
 
     @staticmethod
     def get_data(self):
@@ -132,6 +150,6 @@ class Portfolio():
         self.print(self, max_we)
 
 if __name__ == '__main__':
-    port = Portfolio(['600050','000725','600519'])
+    port = Portfolio(['IBM','AAPL','GOOGL'])
     port.set_basic('2016-01-01', '2017-05-20', 5.5, 4)
     port.compute()
