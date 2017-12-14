@@ -50,6 +50,7 @@ class Portfolio():
 
         re = None
         num = 0
+        # Keep requesting stocks data until success.
         while re == None:
             try:
                 arr = web.DataReader(arr[1], 'yahoo', start=arr[0].start_date, end=arr[0].end_date)
@@ -57,6 +58,7 @@ class Portfolio():
                 # It automatically
                 print('Data request failed, trying again..')
                 time.sleep(20)
+                # Return when failed for 5 times.
                 num += 1
                 if num == 5:
                     print('The request failed for 5 times, Please check your input.')
@@ -67,12 +69,14 @@ class Portfolio():
 
 
     @staticmethod
+
     def get_data(self):
         self.returns = False
         returns = False
         temp = []
         for i in self.stock_set:
             temp.append([self, i])
+        # Using multiple processes to request data.
         with Pool(processes=self.processes) as pool:
             re_ar = pool.map(self.request, temp)
         for i in re_ar:
@@ -85,7 +89,7 @@ class Portfolio():
     @staticmethod
     def point(self):
         """
-        get a random set of weights
+        Monte Carlo Simulation: get a random set of weights
         :param self:
         :return:
         """
@@ -133,7 +137,6 @@ class Portfolio():
     def print(self, max_we:list):
         """
         print results
-        :param self:
         :param max_we: Best weights
         :return:
         """
