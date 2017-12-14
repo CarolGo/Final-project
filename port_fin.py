@@ -53,7 +53,7 @@ class Portfolio():
         num = 0
         while re == None:
             try:
-                arr = web.DataReader(arr[2], 'yahoo', start=arr[0], end=arr[1])
+                stock_data = web.DataReader(arr[2], 'yahoo', start=arr[0], end=arr[1])
             except RemoteDataError:
                 # It automatically
                 print('Data request failed, trying again..')
@@ -63,7 +63,7 @@ class Portfolio():
                     print('The request failed for 5 times, Please check your input.')
                     break
             else:
-                re = np.log(arr['Close'] / arr['Close'].shift(1))  # get daily earnings
+                re = np.log(stock_data['Close'] / stock_data['Close'].shift(1))  # get daily earnings
                 return re
 
 
@@ -82,7 +82,7 @@ class Portfolio():
             else:
                 returns = pd.concat([returns, i], join='outer', axis=1)
         self.returns = returns
-
+        return returns
 
     @staticmethod
     def point(self):
@@ -124,8 +124,6 @@ class Portfolio():
             port_returns.append(i[2])
             port_variance.append(i[3])
         if tag ==1 :
-            plt.rcParams['font.sans-serif'] = ['SimHei']
-            plt.rcParams['axes.unicode_minus'] = False
             plt.scatter(port_variance, port_returns, c=port_returns - self.index_a * np.array(port_variance) * np.array(port_variance), marker='o')
             plt.grid(True)
             plt.plot(max_va, max_re, 'r*', markersize=10.0)
