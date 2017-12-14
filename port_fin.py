@@ -21,6 +21,7 @@ class Portfolio():
     returns = False
     index_a = 5.5
     processes = 4
+    trading_days = 0
 
     def __init__(self, stock_list=[]):
         """
@@ -63,6 +64,8 @@ class Portfolio():
                     print('The request failed for 5 times, Please check your input.')
                     break
             else:
+                if arr[3].trading_days == 0:
+                    arr[3].trading_days = len(stock_data.index)
                 re = np.log(stock_data['Close'] / stock_data['Close'].shift(1))  # get daily earnings
                 return re
 
@@ -73,7 +76,7 @@ class Portfolio():
         returns = False
         temp = []
         for i in self.stock_set:
-            temp.append([self.start_date,self.end_date, i])
+            temp.append([self.start_date,self.end_date, i, self])
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.processes) as executor:
             re_ar = executor.map(self.request,temp)
         for i in re_ar:
@@ -83,10 +86,7 @@ class Portfolio():
                 returns = pd.concat([returns, i], join='outer', axis=1)
         self.returns = returns
         return returns
-<<<<<<< HEAD
-=======
 
->>>>>>> cc98bf2970e499b499aaa184eceb9ec6439c266e
 
     @staticmethod
     def point(self):
@@ -97,8 +97,8 @@ class Portfolio():
         """
         weights = np.random.random(len(self.stock_set))
         weights /= np.sum(weights)  # random weight
-        temp_re = np.sum(self.returns.mean() * 252 * weights)
-        temp_va = np.sqrt(np.dot(weights.T, np.dot(self.returns.cov() * 252, weights)))  # Converted to annual revenue
+        temp_re = np.sum(self.returns.mean() * self.trading_days * weights)
+        temp_va = np.sqrt(np.dot(weights.T, np.dot(self.returns.cov() * self.trading_days, weights)))  # Converted to annual revenue
         val = temp_re - self.index_a * temp_va * temp_va  # Investor utility
         return val, weights, temp_re, temp_va
 
