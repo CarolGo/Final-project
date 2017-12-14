@@ -83,6 +83,10 @@ class Portfolio():
                 returns = pd.concat([returns, i], join='outer', axis=1)
         self.returns = returns
         return returns
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc98bf2970e499b499aaa184eceb9ec6439c266e
 
     @staticmethod
     def point(self):
