@@ -56,8 +56,7 @@ class Portfolio():
             try:
                 stock_data = web.DataReader(arr[2], 'yahoo', start=arr[0], end=arr[1])
             except RemoteDataError:
-                # It automatically
-                print('Data request failed, trying again..')
+                print('Data request failed, trying again..')                 # It automatically
                 time.sleep(3)
                 num += 1
                 if num == 5:
@@ -66,19 +65,24 @@ class Portfolio():
             else:
                 if arr[3].trading_days == 0:
                     arr[3].trading_days = len(stock_data.index)
-                re = np.log(stock_data['Close'] / stock_data['Close'].shift(1))  # get daily earnings
-                return re
+                earnings = np.log(stock_data['Close'] / stock_data['Close'].shift(1))    # get daily earnings
+                return earnings
 
 
     @staticmethod
     def get_data(self):
+        """
+
+        :param self:
+        :return:
+        """
         self.returns = False
         returns = False
         temp = []
         for i in self.stock_set:
-            temp.append([self.start_date,self.end_date, i, self])
+            temp.append([self.start_date, self.end_date, i, self])
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.processes) as executor:
-            re_ar = executor.map(self.request,temp)
+            re_ar = executor.map(self.request, temp)
         for i in re_ar:
             if returns is False:
                 returns = i
