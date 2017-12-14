@@ -7,6 +7,7 @@ import pandas_datareader.data as web # API to get stocks data from yahoo.
 from dateutil.relativedelta import relativedelta
 from multiprocessing import Pool
 from pandas_datareader._utils import RemoteDataError
+import concurrent.futures
 
 
 class Portfolio():
@@ -73,16 +74,14 @@ class Portfolio():
         temp = []
         for i in self.stock_set:
             temp.append([self.start_date,self.end_date, i])
-        with Pool(processes=self.processes) as pool:
-            re_ar = pool.map(self.request, temp)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.processes) as executor:
+            re_ar = executor.map(self.request,temp)
         for i in re_ar:
             if returns is False:
                 returns = i
             else:
                 returns = pd.concat([returns, i], join='outer', axis=1)
         self.returns = returns
-        return returns
-
 
 
     @staticmethod
@@ -135,7 +134,7 @@ class Portfolio():
             plt.colorbar(label='Investor utility')  # Investor utility
             plt.show()
 
-        return max_we,max_val
+        return max_we, max_val
 
     @staticmethod
     def print(self, max_we:list):
