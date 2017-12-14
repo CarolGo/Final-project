@@ -82,6 +82,7 @@ class Portfolio():
             else:
                 returns = pd.concat([returns, i], join='outer', axis=1)
         self.returns = returns
+        return returns
 
 
     @staticmethod
