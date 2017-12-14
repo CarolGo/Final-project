@@ -1,5 +1,3 @@
-import django
-django.setup()
 import pandas as pd
 import numpy as np
 import datetime
@@ -25,8 +23,8 @@ class Portfolio():
 
 
     def __init__(self, stock_list=[]):
-        import django
-        django.setup()
+        # import django
+        # django.setup()
         """
         :param stock_list: stock id list, you can add or replace some of them.
         # stock_set = ['601212', '601212', '600050', '000725', '600519']
