@@ -4,15 +4,15 @@ import pandas as pd
 
 def choose(all_stock, basic_start, basic_end, risk_a, processor, basic_times, stock_num):
     '''
-
-    :param all_stock: 备选库
-    :param basic_start: 测试开始时间
-    :param basic_end:
-    :param risk_a:
-    :param processor:
-    :param basic_times: 测试模拟次数
-    :param stock_num:挑选个数
-    :return:
+    Choose particular stocks set from a given stocks poll by randomly choosing sets, then calculating the utility and compare.
+    :param all_stock: Default stocks set.
+    :param basic_start: start date of training stocks set.
+    :param basic_end: end date of training stocks set.
+    :param risk_a: preference rick of user.(ranges from 1 - 14)
+    :param processor: number of multi process.
+    :param basic_times: simulation times.
+    :param stock_num: number of stocks in one set.
+    :return: list of selected stocks.
     '''
     val_set = []
     # get all testing data.
