@@ -197,10 +197,3 @@ class Portfolio():
         max_we = self.plo(self, 0, 3000)[0]
         self.print(self, max_we)
 
-
-if __name__ == '__main__':
-    port = Portfolio(['IBM', 'AAPL', 'GOOGL'])
-    port.set_basic('2016-01-01', '2017-05-20', 5.5, 4)
-    port.get_data(port)
-    max_we = port.plo(port, 1, 3000)[0]
-    port.print(port, max_we)
