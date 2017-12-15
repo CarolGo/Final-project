@@ -28,7 +28,6 @@ def choose(all_stock, basic_start, basic_end, risk_a, processor, basic_times, st
             # generate the portfolio
             temp = [last, all_stock[j]]
             temp_port = port_fin.Portfolio(temp)
-            print(temp)
             temp_port.set_basic(basic_start, basic_end, risk_a, processor)
             # get data from all the testing data
             temp_port.returns = pd.concat(
@@ -58,6 +57,7 @@ if __name__ == '__main__':
     # use choose to find selected stocks
     select_stock = choose(all_stock, basic_start, basic_end,
                           risk_a, processor, basic_times, stock_num)
+    print("The choosen stocks are:", select_stock)
     # generate the final portfolio
     fin_port = port_fin.Portfolio(select_stock)
     fin_port.set_basic('2016-01-01', '2017-05-20', risk_a, processor)
