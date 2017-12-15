@@ -39,12 +39,14 @@ of stock market.
 - type of stock:  
 
 
-  Image that we don't know how to choose stock from various stock market. Depending on investor's utility function,
-  we can calculate the maximum of utility.
+  Image that we don't know how to choose stock from various stock market. Maybe we can choose randomly.
+  However, depending on investor's utility function, we can calculate the maximum of utility with Monte Carlo Simulation and list the utility to get three stocks.
 
 
 ## Instructions on how to use the program:
-User is required to fill in a questionnaire to evaluate his risk preference and his choices  of stocks. According to those information, the program will require the price data of stocks and compare different results from Monte Carlo variables, finally return the portfolio with most suitable weight and trading frequency to the user. User can take this result as suggestion or resort the portfolio directly.
+1. Clone the repository: git clone https://github.com/CarolGo/Final-project.git
+
+
 
 
 ## Sources Used:
