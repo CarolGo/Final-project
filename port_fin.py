@@ -15,7 +15,6 @@ class Portfolio():
     This class realizes the main function of our program.
     Thi class uses the Monte Carlo Simulation to find the best weights of portfolio.
     """
-    stock_set = ['IBM', 'AAPL', 'GOOGL']
     end_date = datetime.datetime.today().replace(
         hour=0, minute=0, second=0, microsecond=0)
     start_date = end_date - relativedelta(years=2)
@@ -37,6 +36,7 @@ class Portfolio():
         :param index_a: Risk Aversion Coefficient, different from users,range from 0~14,you can change it and test.
         :param processes: Amount of processes.
         :return: a matrix contain daily earnings of the stocks
+
         """
 
         self.start_date = Portfolio.time_convertor(start_date)
@@ -118,9 +118,9 @@ class Portfolio():
     @staticmethod
     def point(self):
         """
-        get a random set of weights
+        get a random set of weights and calculate investor utility
         :param self:
-        :return: val: Invertor utility, weight: a list of weights, temp_re: earnings, temp_va: risk
+        :return: val: Invertor utility, weight: a list of weights, temp_re: expect return, temp_va: expect risk
         """
         # simulate random weights
         weights = np.random.random(len(self.stock_set))
@@ -192,6 +192,7 @@ class Portfolio():
     def compute(self):
         """
         Concatenate the function and run the program.
+
         """
         self.get_data(self)
         max_we = self.plo(self, 0, 3000)[0]
