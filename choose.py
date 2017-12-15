@@ -31,7 +31,8 @@ def choose(all_stock, basic_start, basic_end, risk_a, processor, basic_times, st
             print(temp)
             temp_port.set_basic(basic_start, basic_end, risk_a, processor)
             # get data from all the testing data
-            temp_port.returns = pd.concat([returns.iloc[:, i], returns.iloc[:, j]], join='outer', axis=1)
+            temp_port.returns = pd.concat(
+                [returns.iloc[:, i], returns.iloc[:, j]], join='outer', axis=1)
             max_val = temp_port.plo(temp_port, 0, basic_times)[1]
             # generate a list containing the portfolios and their max utility
             val_set.append([temp, max_val])
@@ -55,11 +56,11 @@ if __name__ == '__main__':
     basic_times = 150
     stock_num = 3
     # use choose to find selected stocks
-    select_stock = choose(all_stock, basic_start, basic_end, risk_a, processor, basic_times,stock_num)
+    select_stock = choose(all_stock, basic_start, basic_end,
+                          risk_a, processor, basic_times, stock_num)
     # generate the final portfolio
     fin_port = port_fin.Portfolio(select_stock)
     fin_port.set_basic('2016-01-01', '2017-05-20', risk_a, processor)
     fin_port.get_data(fin_port)
     max_we = fin_port.plo(fin_port, 1, 4000)[0]
-    fin_port.print(fin_port,max_we)
-
+    fin_port.print(fin_port, max_we)
