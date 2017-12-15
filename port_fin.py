@@ -50,13 +50,6 @@ class Portfolio():
         get a stock's data from yahoo.
         :param arr: Array that stores the information of stocks we acquire..
         :return: return the daily earnings of stocks.
-        >>> Portfolio.request(['2016-7-22','2017-7-22','SQEY'])
-        Data request failed, trying again..
-        Data request failed, trying again..
-        Data request failed, trying again..
-        Data request failed, trying again..
-        Data request failed, trying again..
-        The request failed for 5 times, Please check your input.
         """
 
         re = None
